@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Inter } from 'next/font/google';
 import styles from '@/styles/Home.module.css';
 import { Text } from '@chakra-ui/react';
-import HashtagDogView from '@/components/views/HashtagDogView';
+import HashtagDogController from '@/components/controllers/HashtagDogController';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -17,35 +17,12 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main className={styles.main}>
-                <div className={styles.description}>
-                    <p>
-                        Get started by editing&nbsp;
-                        <code className={styles.code}>pages/index.tsx</code>
-                    </p>
-                    <div>
-                        <a
-                            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            By{' '}
-                            <Image
-                                src="/vercel.svg"
-                                alt="Vercel Logo"
-                                className={styles.vercelLogo}
-                                width={100}
-                                height={24}
-                                priority
-                            />
-                        </a>
-                    </div>
-                </div>
                 <div className={styles.center}>
                     <Text as="h1" fontSize="6xl" fontWeight="bold" color="blue.500">
                         # SociAI Rebirth Project
                     </Text>
                 </div>
-                <HashtagDogView />
+                <HashtagDogController />
             </main>
         </>
     );
