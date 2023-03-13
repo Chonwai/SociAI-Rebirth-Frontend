@@ -4,11 +4,13 @@ import {
     FormControl,
     FormErrorMessage,
     FormLabel,
-    HStack,
     Input,
     Select,
-    Stack
+    Stack,
+    Textarea,
+    useClipboard
 } from '@chakra-ui/react';
+import { useEffect } from 'react';
 
 const hashtagStyles = ['Instagram', 'Twitter', 'Facebook', '小紅書', 'TikTok'];
 const hashtagRegions = ['澳門', '香港', '台灣', '中國大陸'];
@@ -43,6 +45,20 @@ const HashtagDogView = (props: HashtagDogViewProps) => {
         handleGenerateClick,
         isGenerating
     } = props;
+    const { onCopy, value, setValue, hasCopied } = useClipboard('');
+
+    useEffect(() => {
+        if (hashtags.length > 0) {
+            const newHashtags = hashtags.map((hashtag) => {
+                if (hashtag.startsWith('#')) {
+                    return hashtag;
+                } else {
+                    return `#${hashtag}`;
+                }
+            });
+            setValue(newHashtags.join(' '));
+        }
+    }, [hashtags]);
 
     return (
         <Box p={4} w="full" maxW="container.sm" mx="auto">
@@ -78,7 +94,19 @@ const HashtagDogView = (props: HashtagDogViewProps) => {
             <Button onClick={handleGenerateClick} isLoading={isGenerating}>
                 Generate Hashtags
             </Button>
-            <Box flexDirection={'row'} mt={4}>
+            <Stack mt={4} spacing={4}>
+                <Textarea
+                    mt={4}
+                    value={value}
+                    readOnly
+                    onChange={(e) => {
+                        console.log(e.target.value);
+                        setValue(e.target.value);
+                    }}
+                />
+                <Button onClick={onCopy}>{hasCopied ? 'Copied!' : 'Copy to Clipboard'}</Button>
+            </Stack>
+            {/* <Box flexDirection={'row'} mt={4}>
                 {hashtags.map((hashtag) => (
                     <Box
                         key={hashtag}
@@ -91,7 +119,7 @@ const HashtagDogView = (props: HashtagDogViewProps) => {
                         {hashtag}
                     </Box>
                 ))}
-            </Box>
+            </Box> */}
         </Box>
     );
 };
