@@ -1,18 +1,20 @@
 import { useState } from 'react';
-import HashtagDogView from '@/components/views/HashtagDogView';
+import HashtagDogView from '@/components/views/HashtagDog/HashtagDogView';
 import { useToast } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { HashtagDogSchema } from '@/schemas/HashtagDogSchema';
+import { getContent } from '@/utils/utils';
+import _get from 'lodash/get';
 
 const DEFAULT_VALUE = {
     style: 'Instagram',
     amount: 10,
     script: '',
-    region: '澳門'
+    region: 'Normal'
 };
 
-const HashtagDogController = () => {
+const HashtagDogContainer = () => {
     const [hashtags, setHashtags] = useState<Array<string>>([]);
 
     const toasts = useToast();
@@ -34,17 +36,17 @@ const HashtagDogController = () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                prompt: `你現在是一個${data.style} hashtag寫手，請根據參考句子生成${data.amount}個${data.region}風格的hashtag，生成的內容根據這個格式'''json\n {"hashtags": []} '''格式輸出。。參考句子如下：${data.script}`
+                prompt: `你現在是一個${data.style} hashtag寫手，請根據參考句子生成${data.amount}個${data.region}風格的hashtag，生成的內容根據這個格式'''json\n {"hashtags": []} '''格式輸出！！！參考句子如下：${data.script}`
             })
         });
 
         if (response.ok) {
             const data: any = await response.json();
             console.log('Data Result: ', data.result);
-            const result = JSON.parse(data.result);
+            const result = getContent(data.result);
             console.log('Result: ', result);
             if (result) {
-                setHashtags(result.hashtags);
+                setHashtags(_get(result, 'hashtags', []));
             } else {
                 toasts({
                     title: 'Error',
@@ -75,4 +77,4 @@ const HashtagDogController = () => {
     );
 };
 
-export default HashtagDogController;
+export default HashtagDogContainer;

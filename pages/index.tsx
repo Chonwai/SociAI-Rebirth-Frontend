@@ -1,13 +1,13 @@
 import Head from 'next/head';
-import Image from 'next/image';
 import { Inter } from 'next/font/google';
 import styles from '@/styles/Home.module.css';
-import { Text } from '@chakra-ui/react';
-import HashtagDogController from '@/components/controllers/HashtagDogController';
+import HashtagDogController from '@/components/containers/HashtagDog/HashtagDogContainer';
+import { withLayout } from '@/hocs/withLayout';
+import SimpleLayout from '@/layouts/SimpleLayout';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export default function Home() {
+const Home = () => {
     return (
         <>
             <Head>
@@ -16,14 +16,9 @@ export default function Home() {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <main className={styles.main}>
-                <div className={styles.center}>
-                    <Text as="h1" fontSize="6xl" fontWeight="bold" color="blue.500">
-                        # SociAI Rebirth Project
-                    </Text>
-                </div>
-                <HashtagDogController />
-            </main>
+            <HashtagDogController />
         </>
     );
-}
+};
+
+export default withLayout(Home, SimpleLayout);

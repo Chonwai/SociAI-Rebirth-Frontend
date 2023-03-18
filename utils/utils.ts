@@ -1,18 +1,21 @@
-export const getContentBetweenSymbols = (str: string, startSymbol: string, endSymbol: string) => {
-    const startIndex = str.indexOf(startSymbol);
-    if (startIndex === -1) return '';
+export const getContentOnNote = (str: string) => {
+    const jsonRegex = /{.*}/s;
+    const jsonMatch = str.match(jsonRegex);
 
-    const endIndex = str.indexOf(endSymbol, startIndex + startSymbol.length);
-    if (endIndex === -1) return '';
+    if (jsonMatch) {
+        const jsonStr = jsonMatch[0];
+        const jsonObj = JSON.parse(jsonStr);
+        console.log(jsonObj);
+        return jsonObj;
+    } else {
+        console.log('No JSON found in the paragraph');
+    }
 
-    return str.slice(startIndex + startSymbol.length, endIndex);
+    return {};
 };
 
 export const getContent = (str: string) => {
-    const symbolList = ['```json', '```'];
-    for (const symbol of symbolList) {
-        const content = getContentBetweenSymbols(str, symbol, '```');
-        if (content) return content;
-    }
-    return '';
+    const content = getContentOnNote(str);
+    console.log(content);
+    return content;
 };
