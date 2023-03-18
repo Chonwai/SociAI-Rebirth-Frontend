@@ -66,13 +66,13 @@ const HashtagDogView = (props: HashtagDogViewProps) => {
                     <form onSubmit={handleSubmit(handleGenerateClick)}>
                         <Stack spacing="4" direction={{ base: 'column', md: 'row' }} mb={4}>
                             <FormControl isInvalid={errors.amount}>
-                                <FormLabel htmlFor="amount">Hashtags Amount (1-30)</FormLabel>
+                                <FormLabel htmlFor="amount">Hashtags Amount (1-10)</FormLabel>
                                 <Input
                                     type={'number'}
                                     id="amount"
                                     placeholder="number"
                                     min={1}
-                                    max={30}
+                                    max={10}
                                     {...register('amount')}
                                 />
                                 <FormErrorMessage>
