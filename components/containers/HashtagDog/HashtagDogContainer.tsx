@@ -11,7 +11,7 @@ const DEFAULT_VALUE = {
     style: 'Instagram',
     amount: 10,
     script: '',
-    region: 'Normal'
+    region: 'Global'
 };
 
 const HashtagDogContainer = () => {

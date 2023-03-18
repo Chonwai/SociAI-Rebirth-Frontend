@@ -39,7 +39,7 @@ export const NavHeader = () => {
                     </DrawerHeader>
                     <DrawerBody>
                         <NavAccordion data={data} />
-                        <HStack mt="6">
+                        {/* <HStack mt="6">
                             <Button
                                 flex="1"
                                 colorScheme="blue"
@@ -52,7 +52,7 @@ export const NavHeader = () => {
                             <Button flex="1" colorScheme="blue" fontWeight="semibold">
                                 Get started
                             </Button>
-                        </HStack>
+                        </HStack> */}
                     </DrawerBody>
                 </DrawerContent>
             </Drawer>

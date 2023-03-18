@@ -4,19 +4,18 @@ import { IoRocketSharp } from 'react-icons/io5';
 
 const features = [
     {
-        name: '210+ Components',
-        description: 'Chakra UI Pro has 210+ componentsto help you develop your project faster.',
+        name: 'Fast to Use',
+        description: 'Type in your scripts/topics and generate your hashtag at a glimpse.',
         icon: BsStars
     },
     {
-        name: 'Production Ready',
-        description:
-            'Effortlessly create your next production-ready experience with Chakra UI Pro components.',
+        name: 'Grab and Use',
+        description: 'Copy the hashtag to use; Simple and Easy to use.',
         icon: IoRocketSharp
     },
     {
-        name: 'Light & Dark',
-        description: 'All components support a light and a dark color mode out of the box.',
+        name: 'Analytics',
+        description: 'Upcoming hashtag analytics funtionality.',
         icon: BsFillMoonFill
     }
 ];
@@ -32,8 +31,7 @@ export const Feature = () => (
                     <Heading size={{ base: 'sm', md: 'md' }}>What can you expect?</Heading>
                 </Stack>
                 <Text color="muted" fontSize={{ base: 'lg', md: 'xl' }} maxW="3xl">
-                    A bundle of 210+ ready-to-use, responsive and accessible components with clever
-                    structured sourcode files.
+                    Most flexible and user friendly hashtag generator. Quick and simple solution.
                 </Text>
             </Stack>
             <SimpleGrid

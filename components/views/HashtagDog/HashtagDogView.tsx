@@ -18,7 +18,7 @@ import { useEffect } from 'react';
 import { Feature } from './Feature';
 
 const hashtagStyles = ['Instagram', 'Twitter', 'Facebook', '小紅書', 'TikTok'];
-const hashtagRegions = ['Normal', 'Macau', 'Hong Kong', 'Taiwan', 'Mainland China'];
+const hashtagRegions = ['Global', 'Macau', 'Hong Kong', 'Taiwan', 'Mainland China'];
 
 interface HashtagDogViewProps {
     handleSubmit: (
@@ -57,12 +57,12 @@ const HashtagDogView = (props: HashtagDogViewProps) => {
                 <Text
                     fontSize={{ base: '2xl', md: '6xl' }}
                     fontWeight="bold"
-                    mb={8}
+                    mb={{ base: 4, md: 8 }}
                     textAlign="center"
                 >
                     🐶 Hashtag Dog
                 </Text>
-                <Box bg="white" rounded="md" p={8} shadow="md">
+                <Box bg="white" rounded="md" p={8} shadow={{ base: 'md', md: 'lg' }}>
                     <form onSubmit={handleSubmit(handleGenerateClick)}>
                         <Stack spacing="4" direction={{ base: 'column', md: 'row' }} mb={4}>
                             <FormControl isInvalid={errors.amount}>

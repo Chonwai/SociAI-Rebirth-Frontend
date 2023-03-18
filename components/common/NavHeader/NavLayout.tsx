@@ -15,7 +15,7 @@ export const NavLayout = (props: NavLayoutProps) => {
     const { onClickMenu, onToggleMode, isMenuOpen, menuButtonRef } = props;
     const MenuIcon = isMenuOpen ? MdClose : FiMenu;
     return (
-        <Flex height="16" align="center" justify="space-between" px="5">
+        <Flex height="16" align="center" justify="space-between" px={{ base: 4, md: 8 }}>
             {/* <Logo /> */}
             <Text fontSize="2xl" fontWeight="bold" color="accent">
                 T-Rex
