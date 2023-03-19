@@ -1,7 +1,7 @@
 // File Path: layouts/SimpleLayout.tsx
 
 import React from 'react';
-import { Box } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 import { NavHeader } from '@/components/common/NavHeader/NavHeader';
 
 interface DashboardLayoutProps {
@@ -23,9 +23,9 @@ const SimpleLayout = (props: DashboardLayoutProps) => {
             </Box>
 
             {/* footer */}
-            <Box as="footer" bg="gray.100" p={4} px={{ base: 4, md: 8 }}>
+            <Box as="footer" py={4} bg="bg-surface" borderTop={'1px'} borderColor="gray.200">
                 <Box maxW="container.xl" mx="auto" textAlign={'center'}>
-                    <p>&copy; {new Date().getFullYear()} SociAI, Inc. All rights reserved.</p>
+                    <Text>&copy; {new Date().getFullYear()} SociAI, Inc. All rights reserved.</Text>
                 </Box>
             </Box>
         </Box>

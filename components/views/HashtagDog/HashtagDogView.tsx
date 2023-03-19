@@ -62,17 +62,17 @@ const HashtagDogView = (props: HashtagDogViewProps) => {
                 >
                     🐶 Hashtag Dog
                 </Text>
-                <Box bg="white" rounded="md" p={8} shadow={{ base: 'md', md: 'lg' }}>
+                <Box rounded="md" p={8} shadow={{ base: 'md', md: 'lg' }}>
                     <form onSubmit={handleSubmit(handleGenerateClick)}>
                         <Stack spacing="4" direction={{ base: 'column', md: 'row' }} mb={4}>
                             <FormControl isInvalid={errors.amount}>
-                                <FormLabel htmlFor="amount">Hashtags Amount (1-10)</FormLabel>
+                                <FormLabel htmlFor="amount">Hashtags Amount (1-30)</FormLabel>
                                 <Input
                                     type={'number'}
                                     id="amount"
                                     placeholder="number"
                                     min={1}
-                                    max={10}
+                                    max={30}
                                     {...register('amount')}
                                 />
                                 <FormErrorMessage>

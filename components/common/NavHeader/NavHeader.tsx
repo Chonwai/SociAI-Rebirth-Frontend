@@ -6,7 +6,7 @@ import {
     DrawerContent,
     DrawerHeader,
     DrawerOverlay,
-    HStack,
+    useColorMode,
     useDisclosure
 } from '@chakra-ui/react';
 import { useRef } from 'react';
@@ -16,11 +16,12 @@ import { NavLayout } from './NavLayout';
 
 export const NavHeader = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const { toggleColorMode } = useColorMode();
     const menuButtonRef = useRef<HTMLButtonElement>(null);
 
     return (
-        <Box as="nav" bg="bg-surface" boxShadow="sm">
-            <NavLayout onClickMenu={onOpen} isMenuOpen={isOpen} />
+        <Box as="nav" bg="bg-surface" boxShadow="sm" borderBottom={'1px'} borderColor="gray.200">
+            <NavLayout onClickMenu={onOpen} isMenuOpen={isOpen} onToggleMode={toggleColorMode} />
             <Drawer
                 placement="left"
                 initialFocusRef={menuButtonRef}
@@ -35,6 +36,7 @@ export const NavHeader = () => {
                             onClickMenu={onClose}
                             isMenuOpen={isOpen}
                             menuButtonRef={menuButtonRef}
+                            onToggleMode={toggleColorMode}
                         />
                     </DrawerHeader>
                     <DrawerBody>

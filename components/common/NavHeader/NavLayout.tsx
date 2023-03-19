@@ -1,6 +1,6 @@
-import { Flex, HStack, Icon, IconButton, StackDivider, Text } from '@chakra-ui/react';
+import { Flex, HStack, Icon, IconButton, StackDivider, Text, useColorMode } from '@chakra-ui/react';
 import { RefObject } from 'react';
-import { FiMenu, FiSun } from 'react-icons/fi';
+import { FiMenu, FiMoon, FiSun } from 'react-icons/fi';
 import { MdClose } from 'react-icons/md';
 // import { Logo } from './Logo'
 
@@ -13,6 +13,7 @@ type NavLayoutProps = {
 
 export const NavLayout = (props: NavLayoutProps) => {
     const { onClickMenu, onToggleMode, isMenuOpen, menuButtonRef } = props;
+    const { colorMode } = useColorMode();
     const MenuIcon = isMenuOpen ? MdClose : FiMenu;
     return (
         <Flex height="16" align="center" justify="space-between" px={{ base: 4, md: 8 }}>
@@ -23,7 +24,13 @@ export const NavLayout = (props: NavLayoutProps) => {
             <HStack divider={<StackDivider height="6" alignSelf="unset" />}>
                 <IconButton
                     variant="ghost"
-                    icon={<Icon as={FiSun} fontSize="xl" />}
+                    icon={
+                        colorMode === 'light' ? (
+                            <Icon as={FiMoon} fontSize="2xl" />
+                        ) : (
+                            <Icon as={FiSun} fontSize="2xl" />
+                        )
+                    }
                     aria-label="Toggle color mode"
                     onClick={onToggleMode}
                 />
