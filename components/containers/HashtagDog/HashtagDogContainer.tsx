@@ -29,7 +29,6 @@ const HashtagDogContainer = () => {
     });
 
     const handleGenerateClick = async (data: any) => {
-        console.log('Data: ', data);
         const response = await fetch('/api/chat', {
             method: 'POST',
             headers: {
@@ -42,9 +41,7 @@ const HashtagDogContainer = () => {
 
         if (response.ok) {
             const data: any = await response.json();
-            console.log('Data Result: ', data.result);
             const result = getContent(data.result);
-            console.log('Result: ', result);
             if (result) {
                 setHashtags(_get(result, 'hashtags', []));
             } else {

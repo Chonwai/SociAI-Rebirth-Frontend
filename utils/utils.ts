@@ -5,7 +5,6 @@ export const getContentOnNote = (str: string) => {
     if (jsonMatch) {
         const jsonStr = jsonMatch[0];
         const jsonObj = JSON.parse(jsonStr);
-        console.log(jsonObj);
         return jsonObj;
     } else {
         console.log('No JSON found in the paragraph');
@@ -16,6 +15,5 @@ export const getContentOnNote = (str: string) => {
 
 export const getContent = (str: string) => {
     const content = getContentOnNote(str);
-    console.log(content);
     return content;
 };

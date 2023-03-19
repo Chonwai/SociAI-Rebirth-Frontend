@@ -16,13 +16,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
     const prompt: string = req.body.prompt;
 
-    console.log('HiHi:', prompt);
-
     let response: any = await oraPromise(api.sendMessage(prompt), {
         text: prompt
     });
-
-    console.log('\n' + response.text + '\n');
 
     res.status(200).json({ result: response.text });
 }

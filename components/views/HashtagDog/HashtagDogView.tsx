@@ -137,7 +137,6 @@ const HashtagDogView = (props: HashtagDogViewProps) => {
                                 value={value}
                                 readOnly
                                 onChange={(e) => {
-                                    console.log(e.target.value);
                                     setValue(e.target.value);
                                 }}
                             />
