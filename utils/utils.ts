@@ -8,6 +8,7 @@ export const getContentOnNote = (str: string) => {
         return jsonObj;
     } else {
         console.log('No JSON found in the paragraph');
+        return {};
     }
 
     return {};
