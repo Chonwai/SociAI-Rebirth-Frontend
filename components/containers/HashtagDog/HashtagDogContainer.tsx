@@ -58,6 +58,15 @@ const HashtagDogContainer = () => {
             }
         } else {
             console.log('error');
+            toasts({
+                title: 'Error',
+                description: 'The Network is not working, please try again :(',
+                status: 'error',
+                duration: 5000,
+                isClosable: true,
+                position: 'top-right'
+            });
+            setHashtags([]);
         }
     };
 
