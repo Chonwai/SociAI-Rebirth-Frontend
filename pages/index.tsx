@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import { Inter } from 'next/font/google';
-import styles from '@/styles/Home.module.css';
 import HashtagDogController from '@/components/containers/HashtagDog/HashtagDogContainer';
 import { withLayout } from '@/hocs/withLayout';
 import SimpleLayout from '@/layouts/SimpleLayout';

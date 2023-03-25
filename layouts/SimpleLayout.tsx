@@ -1,8 +1,9 @@
 // File Path: layouts/SimpleLayout.tsx
 
 import React from 'react';
-import { Box, Text } from '@chakra-ui/react';
+import { Box, Button, Text, Icon } from '@chakra-ui/react';
 import { NavHeader } from '@/components/common/NavHeader/NavHeader';
+import { FaRegCommentDots } from 'react-icons/fa';
 
 interface DashboardLayoutProps {
     children: React.ReactNode;
@@ -20,6 +21,26 @@ const SimpleLayout = (props: DashboardLayoutProps) => {
             {/* main content */}
             <Box maxW="container.xl" mx="auto" mb={4}>
                 {children}
+                <Button
+                    position={'fixed'}
+                    top={'70%'}
+                    right={0}
+                    w={'140px'}
+                    transform="rotate(-90deg) translateY(50px)"
+                    as="a"
+                    href="https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAN__ppuG5ZUQ0VXRlo4WVpNS1hLTDJGMEtJMTMzMVFHUS4u"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    colorScheme="blue"
+                    size="md"
+                    borderRadius={'none'}
+                    borderTopRadius={'md'}
+                    p={4}
+                    zIndex={20}
+                    leftIcon={<Icon as={FaRegCommentDots} />}
+                >
+                    Feedback
+                </Button>
             </Box>
 
             {/* footer */}
