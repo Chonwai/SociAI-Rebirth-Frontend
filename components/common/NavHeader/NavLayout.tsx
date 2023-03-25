@@ -19,7 +19,7 @@ export const NavLayout = (props: NavLayoutProps) => {
         <Flex height="16" align="center" justify="space-between" px={{ base: 4, md: 8 }}>
             {/* <Logo /> */}
             <Text fontSize="2xl" fontWeight="bold" color="accent">
-                T-Rex
+                SociAI
             </Text>
             <HStack divider={<StackDivider height="6" alignSelf="unset" />}>
                 <IconButton

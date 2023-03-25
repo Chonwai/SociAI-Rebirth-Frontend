@@ -46,7 +46,7 @@ const SimpleLayout = (props: DashboardLayoutProps) => {
             {/* footer */}
             <Box as="footer" py={4} bg="bg-surface" borderTop={'1px'} borderColor="gray.200">
                 <Box maxW="container.xl" mx="auto" textAlign={'center'}>
-                    <Text>&copy; {new Date().getFullYear()} SociAI, Inc. All rights reserved.</Text>
+                    <Text>&copy; {new Date().getFullYear()} T-Rex, Inc. All rights reserved.</Text>
                 </Box>
             </Box>
         </Box>
