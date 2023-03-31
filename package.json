@@ -8,7 +8,8 @@
         "start": "next start",
         "lint": "next lint",
         "prepare": "husky install",
-        "format": "prettier --single-quote --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" --config ./.prettierrc"
+        "format": "prettier --single-quote --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" --config ./.prettierrc",
+        "export": "next export && next-sitemap"
     },
     "dependencies": {
         "@chakra-ui/react": "^2.5.1",
@@ -27,6 +28,7 @@
         "framer-motion": "^10.2.3",
         "lodash": "^4.17.21",
         "next": "13.2.4",
+        "next-sitemap": "^4.0.6",
         "ora": "^6.1.2",
         "prettier": "^2.8.4",
         "pretty-quick": "^3.1.3",

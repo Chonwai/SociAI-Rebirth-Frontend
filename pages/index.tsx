@@ -24,7 +24,7 @@ const Home = () => {
                 <link rel="icon" href="/favicon.ico" />
                 <meta property="og:title" content="SociAI Hashtag Generator" />
                 <meta property="og:type" content="website" />
-                <meta property="og:url" content="https://www.sociai.com" />
+                <meta property="og:url" content="https://www.sociai.app" />
                 <meta
                     property="og:image"
                     content="https://scontent-tpe1-1.xx.fbcdn.net/v/t39.30808-6/338550188_762914091829144_2784882164821364953_n.png?stp=cp6_dst-png&_nc_cat=104&ccb=1-7&_nc_sid=730e14&_nc_ohc=kfZ3p9PiLCcAX-s9xtY&_nc_ht=scontent-tpe1-1.xx&oh=00_AfAMtZ0Oe1GPSCKV-9XgSaDonrMZryj3ZsLlW87BQcKGVw&oe=642BBFC5"

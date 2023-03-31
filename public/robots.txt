@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.sociai.app
+
+# Sitemaps
+Sitemap: https://www.sociai.app/sitemap.xml
