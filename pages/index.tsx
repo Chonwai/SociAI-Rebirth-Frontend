@@ -5,12 +5,39 @@ import { withLayout } from '@/hocs/withLayout';
 import SimpleLayout from '@/layouts/SimpleLayout';
 
 const inter = Inter({ subsets: ['latin'] });
+const isDev = process.env.NEXT_PUBLIC_NODE_ENV !== 'production';
 
 const Home = () => {
     return (
         <>
             <Head>
                 <title>SociAI</title>
+                {
+                    // eslint-disable-next-line @next/next/no-sync-scripts
+                    !isDev && (
+                        <script
+                            async
+                            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_TRACKING_ID}`}
+                        ></script>
+                    )
+                }
+                {
+                    // eslint-disable-next-line @next/next/no-sync-scripts
+                    !isDev && (
+                        <script
+                            dangerouslySetInnerHTML={{
+                                __html: `
+                            window.dataLayer = window.dataLayer || [];
+                            function gtag(){dataLayer.push(arguments);}
+                            gtag('js', new Date());
+                            gtag('config', '${process.env.NEXT_PUBLIC_GA_TRACKING_ID}', {
+                              page_path: window.location.pathname,
+                            });
+                        `
+                            }}
+                        />
+                    )
+                }
                 <meta
                     name="description"
                     content="🚀 Are you tired of spending hours searching for the perfect hashtags for your social media posts? Look no further than SociAI Hashtag Generator! Our fast and easy to use hashtag generator analyzes your content and suggests the most effective hashtags for multiple social media platforms. Save time ⏰ and boost engagement 💬 with SociAI. Try it out today!"
