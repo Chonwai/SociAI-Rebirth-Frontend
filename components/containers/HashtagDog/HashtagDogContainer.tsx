@@ -35,7 +35,6 @@ const HashtagDogContainer = () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                // prompt: `你現在是一個${data.style} hashtag寫手，請根據參考句子生成${data.amount}個${data.region}風格的hashtag，生成的${data.amount}個hashtag內容根據這個格式'''json\n {"hashtags": []} '''格式輸出！參考句子如下：${data.script}`
                 prompt: `You are now a ${data.style} hashtag writer. The output should follow the format '''json\n {"hashtags": []} '''. Please generate ${data.amount} ${data.region}-style hashtags based on the given reference sentence "${data.script}".`
             })
         });
