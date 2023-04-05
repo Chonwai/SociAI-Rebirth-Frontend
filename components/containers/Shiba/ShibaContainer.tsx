@@ -35,7 +35,7 @@ const ShibaContainer = () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                prompt: `You are now a ${data.style} script writer. The output should follow the format '''json\n {"script": ""} '''. Please extend and generate a ${data.length} and including emoji ${data.region} style script based on the given reference sentence: "${data.description}".`
+                prompt: `You are now a ${data.style} script writer. The output should follow the format '''json\n {"script": ""} '''. Please extend and generate a ${data.length} and including emoji ${data.region} style script based on the given reference description: "${data.description}".`
             })
         });
 

@@ -1,17 +1,5 @@
 import { ElementType } from 'react';
-import {
-    FiAlertOctagon,
-    FiBarChart,
-    FiBook,
-    FiBookOpen,
-    FiBriefcase,
-    FiCompass,
-    FiHome,
-    FiLock,
-    FiPackage,
-    FiPenTool
-} from 'react-icons/fi';
-import { HiOutlineChatAlt, HiOutlineGlobe } from 'react-icons/hi';
+import { FiPenTool, FiSearch } from 'react-icons/fi';
 
 export type NavData = Array<{
     title: string;
@@ -22,7 +10,8 @@ export const data: NavData = [
     {
         title: 'Product',
         items: [
-            { icon: FiCompass, label: 'Hashtag Dog', href: '/' }
+            { icon: FiPenTool, label: 'Shiba Script Generator', href: '/' },
+            { icon: FiSearch, label: 'Hashtag Dog', href: '/hashtag-dog' }
             // { icon: FiBook, label: 'Changelog', href: '#' },
             // { icon: HiOutlineChatAlt, label: 'Feedback', href: '#' },
             // { icon: FiPackage, label: 'Integrations', href: '#' }

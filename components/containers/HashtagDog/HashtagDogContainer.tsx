@@ -35,7 +35,7 @@ const HashtagDogContainer = () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                prompt: `You are now a ${data.style} hashtag writer. The output should follow the format '''json\n {"hashtags": []} '''. Please generate ${data.amount} ${data.region}-style hashtags based on the given reference sentence "${data.script}".`
+                prompt: `You are now a ${data.style} hashtag writer. The output should follow the format '''json\n {"hashtags": []} '''. Please generate ${data.amount} ${data.region} style useful and popular hashtags based on the given reference sentence "${data.script}".`
             })
         });
 
