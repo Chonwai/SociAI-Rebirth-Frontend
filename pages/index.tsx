@@ -1,10 +1,9 @@
 import Head from 'next/head';
-import { Inter } from 'next/font/google';
 import HashtagDogController from '@/components/containers/HashtagDog/HashtagDogContainer';
 import { withLayout } from '@/hocs/withLayout';
 import SimpleLayout from '@/layouts/SimpleLayout';
+import ShibaContainer from '@/components/containers/Shiba/ShibaContainer';
 
-const inter = Inter({ subsets: ['latin'] });
 const isDev = process.env.NEXT_PUBLIC_NODE_ENV !== 'production';
 
 const Home = () => {
@@ -62,7 +61,8 @@ const Home = () => {
                 />
                 <meta property="og:site_name" content="SociAI" />
             </Head>
-            <HashtagDogController />
+            {/* <HashtagDogController /> */}
+            <ShibaContainer />
         </>
     );
 };
