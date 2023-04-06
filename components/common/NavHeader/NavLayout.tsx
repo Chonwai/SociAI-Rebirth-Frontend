@@ -1,4 +1,5 @@
 import { Flex, HStack, Icon, IconButton, StackDivider, Text, useColorMode } from '@chakra-ui/react';
+import Link from 'next/link';
 import { RefObject } from 'react';
 import { FiMenu, FiMoon, FiSun } from 'react-icons/fi';
 import { MdClose } from 'react-icons/md';
@@ -18,9 +19,11 @@ export const NavLayout = (props: NavLayoutProps) => {
     return (
         <Flex height="16" align="center" justify="space-between" px={{ base: 4, md: 8 }}>
             {/* <Logo /> */}
-            <Text fontSize="2xl" fontWeight="bold" color="accent">
-                SociAI
-            </Text>
+            <Link href="/">
+                <Text fontSize="2xl" fontWeight="bold" color="accent">
+                    SociAI
+                </Text>
+            </Link>
             <HStack divider={<StackDivider height="6" alignSelf="unset" />}>
                 <IconButton
                     variant="ghost"
