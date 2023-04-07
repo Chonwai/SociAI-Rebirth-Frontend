@@ -4,6 +4,7 @@ import { withLayout } from '@/hocs/withLayout';
 import SimpleLayout from '@/layouts/SimpleLayout';
 import ShibaContainer from '@/components/containers/Shiba/ShibaContainer';
 import ScriptGenerator from '@/components/features/ScriptGenerator/ScriptGenerator';
+import { Feature } from '@/components/views/Shiba/Feature';
 
 const isDev = process.env.NEXT_PUBLIC_NODE_ENV !== 'production';
 
@@ -63,6 +64,7 @@ const Home = () => {
                 <meta property="og:site_name" content="SociAI" />
             </Head>
             <ScriptGenerator variant="circles-alt" />
+            <Feature py={{ base: '8', md: '12' }} px={{ base: '4', md: '8' }} />
         </>
     );
 };
