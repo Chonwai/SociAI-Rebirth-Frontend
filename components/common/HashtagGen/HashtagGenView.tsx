@@ -1,6 +1,6 @@
-import { HashtagGen } from '@/components/common/HashtagGen';
 import {
     Box,
+    BoxProps,
     Button,
     Collapse,
     Flex,
@@ -16,12 +16,11 @@ import {
     useDisclosure
 } from '@chakra-ui/react';
 import { useEffect } from 'react';
-import { Feature } from './Feature';
 
 const hashtagStyles = ['Instagram', 'Twitter', 'Facebook', '小紅書', 'TikTok'];
 const hashtagRegions = ['Global', 'Macau', 'Hong Kong', 'Taiwan', 'Mainland China'];
 
-interface HashtagDogViewProps {
+interface HashtagGenViewProps extends BoxProps {
     handleSubmit: (
         callback: (data: any) => void
     ) => (event: React.BaseSyntheticEvent) => Promise<void>;
@@ -32,8 +31,9 @@ interface HashtagDogViewProps {
     handleGenerateClick: (data: any) => void;
 }
 
-const HashtagDogView = (props: HashtagDogViewProps) => {
-    const { handleSubmit, register, errors, isSubmitting, hashtags, handleGenerateClick } = props;
+const HashtagGenView = (props: HashtagGenViewProps) => {
+    const { handleSubmit, register, errors, isSubmitting, hashtags, handleGenerateClick, ...rest } =
+        props;
     const { onCopy, value, setValue, hasCopied } = useClipboard('');
     const { isOpen, onToggle } = useDisclosure();
 
@@ -53,15 +53,15 @@ const HashtagDogView = (props: HashtagDogViewProps) => {
     }, [hashtags]);
 
     return (
-        <Box mx="auto" p={{ base: 4, md: 8 }}>
-            {/* <Box mx="auto" mb={8} w={{ base: 'full', md: 'container.md' }}>
+        <Box mx="auto" p={{ base: 4, md: 8 }} {...rest}>
+            <Box mx="auto" w={{ base: 'full', md: 'container.md' }}>
                 <Text
                     fontSize={{ base: '2xl', md: '6xl' }}
                     fontWeight="bold"
                     mb={{ base: 4, md: 8 }}
                     textAlign="center"
                 >
-                    🐶 Hashtag Dog
+                    🐶 Hashtag Dog Generator
                 </Text>
                 <Box rounded="md" p={8} shadow={{ base: 'md', md: 'lg' }}>
                     <form onSubmit={handleSubmit(handleGenerateClick)}>
@@ -136,7 +136,6 @@ const HashtagDogView = (props: HashtagDogViewProps) => {
                             <Textarea
                                 mt={4}
                                 value={value}
-                                readOnly
                                 onChange={(e) => {
                                     setValue(e.target.value);
                                 }}
@@ -147,11 +146,9 @@ const HashtagDogView = (props: HashtagDogViewProps) => {
                         </Stack>
                     </Collapse>
                 )}
-            </Box> */}
-            <HashtagGen />
-            <Feature />
+            </Box>
         </Box>
     );
 };
 
-export default HashtagDogView;
+export default HashtagGenView;

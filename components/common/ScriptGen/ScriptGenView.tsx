@@ -1,13 +1,12 @@
-import { HashtagGen } from '@/components/common/HashtagGen';
 import {
     Box,
+    BoxProps,
     Button,
     Collapse,
     Flex,
     FormControl,
     FormErrorMessage,
     FormLabel,
-    Input,
     Select,
     Stack,
     Text,
@@ -16,74 +15,67 @@ import {
     useDisclosure
 } from '@chakra-ui/react';
 import { useEffect } from 'react';
-import { Feature } from './Feature';
 
-const hashtagStyles = ['Instagram', 'Twitter', 'Facebook', '小紅書', 'TikTok'];
-const hashtagRegions = ['Global', 'Macau', 'Hong Kong', 'Taiwan', 'Mainland China'];
+const scriptStyles = ['Instagram', 'Twitter', 'Facebook', '小紅書', 'TikTok'];
+const scriptRegions = ['Global', 'Macau', 'Hong Kong', 'Taiwan', 'Mainland China'];
+const scriptLengths = ['Short', 'Medium', 'Long'];
 
-interface HashtagDogViewProps {
+interface ScriptGenViewProps extends BoxProps {
     handleSubmit: (
         callback: (data: any) => void
     ) => (event: React.BaseSyntheticEvent) => Promise<void>;
     register: any;
     errors: any;
     isSubmitting: boolean;
-    hashtags: Array<string>;
+    script: string;
     handleGenerateClick: (data: any) => void;
 }
 
-const HashtagDogView = (props: HashtagDogViewProps) => {
-    const { handleSubmit, register, errors, isSubmitting, hashtags, handleGenerateClick } = props;
+const ScriptGenView = (props: ScriptGenViewProps) => {
+    const { handleSubmit, register, errors, isSubmitting, script, handleGenerateClick, ...rest } =
+        props;
     const { onCopy, value, setValue, hasCopied } = useClipboard('');
     const { isOpen, onToggle } = useDisclosure();
 
     useEffect(() => {
-        if (hashtags.length > 0) {
-            const newHashtags = hashtags.map((hashtag) => {
-                if (hashtag.startsWith('#')) {
-                    return hashtag;
-                } else {
-                    return `#${hashtag}`;
-                }
-            });
-            setValue(newHashtags.join(' '));
+        if (script.length > 0) {
+            setValue(script);
             onToggle();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [hashtags]);
+    }, [script]);
 
     return (
-        <Box mx="auto" p={{ base: 4, md: 8 }}>
-            {/* <Box mx="auto" mb={8} w={{ base: 'full', md: 'container.md' }}>
+        <Box mx="auto" p={{ base: 4, md: 8 }} {...rest}>
+            <Box mx="auto" w={{ base: 'full', md: 'container.md' }}>
                 <Text
                     fontSize={{ base: '2xl', md: '6xl' }}
                     fontWeight="bold"
                     mb={{ base: 4, md: 8 }}
                     textAlign="center"
                 >
-                    🐶 Hashtag Dog
+                    🐶 Shiba Script Generator
                 </Text>
                 <Box rounded="md" p={8} shadow={{ base: 'md', md: 'lg' }}>
                     <form onSubmit={handleSubmit(handleGenerateClick)}>
                         <Stack spacing="4" direction={{ base: 'column', md: 'row' }} mb={4}>
-                            <FormControl isInvalid={errors.amount}>
-                                <FormLabel htmlFor="amount">Hashtags Amount (1-30)</FormLabel>
-                                <Input
-                                    type={'number'}
-                                    id="amount"
-                                    placeholder="number"
-                                    min={1}
-                                    max={30}
-                                    {...register('amount')}
-                                />
+                            <FormControl isInvalid={errors.length}>
+                                <FormLabel>Script Length</FormLabel>
+                                <Select {...register('length')}>
+                                    {scriptLengths.map((length) => (
+                                        <option key={length} value={length}>
+                                            {length}
+                                        </option>
+                                    ))}
+                                </Select>
                                 <FormErrorMessage>
-                                    {errors.amount && errors.amount.message}
+                                    {errors.length && errors.length.message}
                                 </FormErrorMessage>
                             </FormControl>
                             <FormControl isInvalid={errors.style}>
-                                <FormLabel>Hashtag Style</FormLabel>
+                                <FormLabel>Script Style</FormLabel>
                                 <Select {...register('style')}>
-                                    {hashtagStyles.map((style) => (
+                                    {scriptStyles.map((style) => (
                                         <option key={style} value={style}>
                                             {style}
                                         </option>
@@ -94,9 +86,9 @@ const HashtagDogView = (props: HashtagDogViewProps) => {
                                 </FormErrorMessage>
                             </FormControl>
                             <FormControl isInvalid={errors.region}>
-                                <FormLabel>Hashtag Region</FormLabel>
+                                <FormLabel>Script Region</FormLabel>
                                 <Select {...register('region')}>
-                                    {hashtagRegions.map((region) => (
+                                    {scriptRegions.map((region) => (
                                         <option key={region} value={region}>
                                             {region}
                                         </option>
@@ -108,11 +100,11 @@ const HashtagDogView = (props: HashtagDogViewProps) => {
                             </FormControl>
                         </Stack>
                         <Stack spacing="4" direction={{ base: 'column', md: 'row' }} mb={4}>
-                            <FormControl isInvalid={errors.script} isRequired>
-                                <FormLabel>Input Script</FormLabel>
-                                <Textarea {...register('script')} />
+                            <FormControl isInvalid={errors.description} isRequired>
+                                <FormLabel>Input Description</FormLabel>
+                                <Textarea {...register('description')} />
                                 <FormErrorMessage>
-                                    {errors.script && errors.script.message}
+                                    {errors.description && errors.description.message}
                                 </FormErrorMessage>
                             </FormControl>
                         </Stack>
@@ -130,16 +122,16 @@ const HashtagDogView = (props: HashtagDogViewProps) => {
                         </Flex>
                     </form>
                 </Box>
-                {hashtags.length > 0 && (
+                {script.length > 0 && (
                     <Collapse in={isOpen} animateOpacity>
                         <Stack spacing={4}>
                             <Textarea
                                 mt={4}
                                 value={value}
-                                readOnly
                                 onChange={(e) => {
                                     setValue(e.target.value);
                                 }}
+                                rows={value.split('\n').length + 2}
                             />
                             <Button onClick={onCopy}>
                                 {hasCopied ? 'Copied!' : 'Copy to Clipboard'}
@@ -147,11 +139,9 @@ const HashtagDogView = (props: HashtagDogViewProps) => {
                         </Stack>
                     </Collapse>
                 )}
-            </Box> */}
-            <HashtagGen />
-            <Feature />
+            </Box>
         </Box>
     );
 };
 
-export default HashtagDogView;
+export default ScriptGenView;

@@ -4,13 +4,21 @@ import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import { Analytics } from '@vercel/analytics/react';
+import { StepsTheme as Steps } from 'chakra-ui-steps';
 
 const config = {
     initialColorMode: 'system',
     useSystemColorMode: true
 };
 
-const theme = extendTheme({ config });
+const theme = extendTheme({
+    config,
+    ...{
+        components: {
+            Steps
+        }
+    }
+});
 
 function App({ Component, pageProps }: AppProps) {
     return (

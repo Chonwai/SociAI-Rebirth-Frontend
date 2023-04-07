@@ -3,6 +3,7 @@ import HashtagDogController from '@/components/containers/HashtagDog/HashtagDogC
 import { withLayout } from '@/hocs/withLayout';
 import SimpleLayout from '@/layouts/SimpleLayout';
 import ShibaContainer from '@/components/containers/Shiba/ShibaContainer';
+import ScriptGenerator from '@/components/features/ScriptGenerator/ScriptGenerator';
 
 const isDev = process.env.NEXT_PUBLIC_NODE_ENV !== 'production';
 
@@ -61,8 +62,7 @@ const Home = () => {
                 />
                 <meta property="og:site_name" content="SociAI" />
             </Head>
-            {/* <HashtagDogController /> */}
-            <ShibaContainer />
+            <ScriptGenerator variant="circles-alt" />
         </>
     );
 };
