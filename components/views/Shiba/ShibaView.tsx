@@ -101,7 +101,7 @@ const ShibaView = (props: ShibaViewProps) => {
                         <Stack spacing="4" direction={{ base: 'column', md: 'row' }} mb={4}>
                             <FormControl isInvalid={errors.description} isRequired>
                                 <FormLabel>Input Description</FormLabel>
-                                <Textarea {...register('description')} />
+                                <Textarea rows={5} {...register('description')} />
                                 <FormErrorMessage>
                                     {errors.description && errors.description.message}
                                 </FormErrorMessage>

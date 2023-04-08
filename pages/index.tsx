@@ -5,10 +5,16 @@ import SimpleLayout from '@/layouts/SimpleLayout';
 import ShibaContainer from '@/components/containers/Shiba/ShibaContainer';
 import ScriptGenerator from '@/components/features/ScriptGenerator/ScriptGenerator';
 import { Feature } from '@/components/views/Shiba/Feature';
+import { useBreakpointValue } from '@chakra-ui/react';
 
 const isDev = process.env.NEXT_PUBLIC_NODE_ENV !== 'production';
 
 const Home = () => {
+    const variant = useBreakpointValue({ base: 'simple', md: 'circles-alt' }) as
+        | 'circles'
+        | 'circles-alt'
+        | 'simple'
+        | undefined;
     return (
         <>
             <Head>
@@ -22,6 +28,20 @@ const Home = () => {
                         ></script>
                     )
                 }
+                {!isDev && (
+                    // eslint-disable-next-line @next/next/next-script-for-ga
+                    <script
+                        dangerouslySetInnerHTML={{
+                            __html: `
+                                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                                })(window,document,'script','dataLayer','${process.env.NEXT_PUBLIC_GTM_TRACKING_ID}');
+                        `
+                        }}
+                    />
+                )}
                 {
                     // eslint-disable-next-line @next/next/no-sync-scripts
                     !isDev && (
@@ -63,7 +83,15 @@ const Home = () => {
                 />
                 <meta property="og:site_name" content="SociAI" />
             </Head>
-            <ScriptGenerator variant="circles-alt" />
+            <noscript>
+                <iframe
+                    src={`https://www.googletagmanager.com/ns.html?id=${process.env.NEXT_PUBLIC_GTM_TRACKING_ID}`}
+                    height="0"
+                    width="0"
+                    style={{ display: 'none', visibility: 'hidden' }}
+                ></iframe>
+            </noscript>
+            <ScriptGenerator variant={variant} />
             <Feature py={{ base: '8', md: '12' }} px={{ base: '4', md: '8' }} />
         </>
     );

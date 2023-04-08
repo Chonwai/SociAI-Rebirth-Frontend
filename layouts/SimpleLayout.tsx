@@ -23,10 +23,9 @@ const SimpleLayout = (props: DashboardLayoutProps) => {
                 {children}
                 <Button
                     position={'fixed'}
-                    top={'70%'}
-                    right={0}
+                    bottom={-1}
+                    right={'20px'}
                     w={'140px'}
-                    transform="rotate(-90deg) translateY(50px)"
                     as="a"
                     href="https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAN__ppuG5ZUQ0VXRlo4WVpNS1hLTDJGMEtJMTMzMVFHUS4u"
                     target="_blank"
@@ -35,6 +34,7 @@ const SimpleLayout = (props: DashboardLayoutProps) => {
                     size="md"
                     borderRadius={'none'}
                     borderTopRadius={'md'}
+                    opacity={0.7}
                     p={4}
                     zIndex={20}
                     leftIcon={<Icon as={FaRegCommentDots} />}

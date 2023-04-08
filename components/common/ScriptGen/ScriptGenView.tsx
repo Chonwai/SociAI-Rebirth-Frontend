@@ -12,9 +12,10 @@ import {
     Text,
     Textarea,
     useClipboard,
-    useDisclosure
+    useDisclosure,
+    useBreakpointValue
 } from '@chakra-ui/react';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 const scriptStyles = ['Instagram', 'Twitter', 'Facebook', '小紅書', 'TikTok'];
 const scriptRegions = ['Global', 'Macau', 'Hong Kong', 'Taiwan', 'Mainland China'];
@@ -37,6 +38,10 @@ const ScriptGenView = (props: ScriptGenViewProps) => {
     const { onCopy, value, setValue, hasCopied } = useClipboard('');
     const { isOpen, onToggle } = useDisclosure();
 
+    const rows = useBreakpointValue({ base: 10, md: 5 });
+
+    const textareaRef = useRef<HTMLTextAreaElement>(null);
+
     useEffect(() => {
         if (script.length > 0) {
             setValue(script);
@@ -45,8 +50,16 @@ const ScriptGenView = (props: ScriptGenViewProps) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [script]);
 
+    useEffect(() => {
+        if (value !== '' && textareaRef.current) {
+            const textareaPosition =
+                textareaRef.current.getBoundingClientRect().top + window.pageYOffset;
+            window.scrollTo({ top: textareaPosition - 100, behavior: 'smooth' });
+        }
+    }, [value]);
+
     return (
-        <Box mx="auto" p={{ base: 4, md: 8 }} {...rest}>
+        <Box mx="auto" p={{ base: 0, md: 8 }} {...rest}>
             <Box mx="auto" w={{ base: 'full', md: 'container.md' }}>
                 <Text
                     fontSize={{ base: '2xl', md: '6xl' }}
@@ -56,7 +69,7 @@ const ScriptGenView = (props: ScriptGenViewProps) => {
                 >
                     🐶 Shiba Script Generator
                 </Text>
-                <Box rounded="md" p={8} shadow={{ base: 'md', md: 'lg' }}>
+                <Box rounded="md" p={{ base: 4, md: 8 }} shadow={{ base: 'md', md: 'lg' }}>
                     <form onSubmit={handleSubmit(handleGenerateClick)}>
                         <Stack spacing="4" direction={{ base: 'column', md: 'row' }} mb={4}>
                             <FormControl isInvalid={errors.length}>
@@ -102,7 +115,7 @@ const ScriptGenView = (props: ScriptGenViewProps) => {
                         <Stack spacing="4" direction={{ base: 'column', md: 'row' }} mb={4}>
                             <FormControl isInvalid={errors.description} isRequired>
                                 <FormLabel>Input Description</FormLabel>
-                                <Textarea {...register('description')} />
+                                <Textarea {...register('description')} rows={rows} />
                                 <FormErrorMessage>
                                     {errors.description && errors.description.message}
                                 </FormErrorMessage>
@@ -116,6 +129,7 @@ const ScriptGenView = (props: ScriptGenViewProps) => {
                                 onClick={() => {
                                     isOpen ? onToggle() : null;
                                 }}
+                                id="hashtag-generate"
                             >
                                 Generate 🐾
                             </Button>
@@ -126,12 +140,13 @@ const ScriptGenView = (props: ScriptGenViewProps) => {
                     <Collapse in={isOpen} animateOpacity>
                         <Stack spacing={4}>
                             <Textarea
+                                ref={textareaRef}
                                 mt={4}
                                 value={value}
                                 onChange={(e) => {
                                     setValue(e.target.value);
                                 }}
-                                rows={value.split('\n').length + 2}
+                                rows={rows}
                             />
                             <Button onClick={onCopy}>
                                 {hasCopied ? 'Copied!' : 'Copy to Clipboard'}
