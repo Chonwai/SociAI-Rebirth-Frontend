@@ -1,3 +1,4 @@
+import { hashtags2String } from '@/utils/utils';
 import {
     Box,
     BoxProps,
@@ -44,14 +45,8 @@ const HashtagGenView = (props: HashtagGenViewProps) => {
 
     useEffect(() => {
         if (hashtags.length > 0) {
-            const newHashtags = hashtags.map((hashtag) => {
-                if (hashtag.startsWith('#')) {
-                    return hashtag;
-                } else {
-                    return `#${hashtag}`;
-                }
-            });
-            setValue(newHashtags.join(' '));
+            const newHashtags = hashtags2String(hashtags);
+            setValue(newHashtags);
             onToggle();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps

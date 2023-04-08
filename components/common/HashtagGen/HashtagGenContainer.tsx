@@ -7,6 +7,10 @@ import { HashtagDogSchema } from '@/schemas/HashtagDogSchema';
 import { getContent } from '@/utils/utils';
 import _get from 'lodash/get';
 
+interface HashtagGenContainerProps extends BoxProps {
+    onHashtagsChange?: (hashtags: Array<string>) => void | undefined;
+}
+
 const DEFAULT_VALUE = {
     style: 'Instagram',
     amount: 10,
@@ -14,8 +18,8 @@ const DEFAULT_VALUE = {
     region: 'Global'
 };
 
-const HashtagGenContainer = (props: BoxProps) => {
-    const { ...rest } = props;
+const HashtagGenContainer = (props: HashtagGenContainerProps) => {
+    const { onHashtagsChange, ...rest } = props;
     const [hashtags, setHashtags] = useState<Array<string>>([]);
 
     const toasts = useToast();
@@ -45,6 +49,7 @@ const HashtagGenContainer = (props: BoxProps) => {
             const result = getContent(data.result);
             if (result) {
                 setHashtags(_get(result, 'hashtags', []));
+                (onHashtagsChange || (() => {}))(_get(result, 'hashtags', []));
             } else {
                 toasts({
                     title: 'Error',
@@ -55,6 +60,7 @@ const HashtagGenContainer = (props: BoxProps) => {
                     position: 'top-right'
                 });
                 setHashtags([]);
+                (onHashtagsChange || (() => {}))([]);
             }
         } else {
             console.log('error');
@@ -67,6 +73,7 @@ const HashtagGenContainer = (props: BoxProps) => {
                 position: 'top-right'
             });
             setHashtags([]);
+            (onHashtagsChange || (() => {}))([]);
         }
     };
 

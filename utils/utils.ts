@@ -18,3 +18,18 @@ export const getContent = (str: string) => {
     const content = getContentOnNote(str);
     return content;
 };
+
+export const hashtags2String = (hashtags: string[]) => {
+    if (hashtags.length > 0) {
+        const newHashtags = hashtags.map((hashtag) => {
+            if (hashtag.startsWith('#')) {
+                return hashtag;
+            } else {
+                return `#${hashtag}`;
+            }
+        });
+        return newHashtags.join(' ');
+    } else {
+        return '';
+    }
+};

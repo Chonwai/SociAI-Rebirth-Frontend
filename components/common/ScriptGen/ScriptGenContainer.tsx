@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ScriptGenView from './ScriptGenView';
 import { useToast, BoxProps } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
@@ -7,6 +7,10 @@ import { ShibaSchema } from '@/schemas/ShibaSchema';
 import { getContent } from '@/utils/utils';
 import _get from 'lodash/get';
 
+interface ScriptGenContainerProps extends BoxProps {
+    onScriptChange?: (script: string) => void | undefined;
+}
+
 const DEFAULT_VALUE = {
     style: 'Instagram',
     length: 'Medium',
@@ -14,8 +18,8 @@ const DEFAULT_VALUE = {
     region: 'Global'
 };
 
-const ScriptGenContainer = (props: BoxProps) => {
-    const { ...rest } = props;
+const ScriptGenContainer = (props: ScriptGenContainerProps) => {
+    const { onScriptChange, ...rest } = props;
     const [script, setScript] = useState('');
 
     const toasts = useToast();
@@ -45,6 +49,7 @@ const ScriptGenContainer = (props: BoxProps) => {
             const result = getContent(data.result);
             if (result) {
                 setScript(_get(result, 'script', ''));
+                (onScriptChange || (() => {}))(_get(result, 'script', ''));
             } else {
                 toasts({
                     title: 'Error',
@@ -55,6 +60,7 @@ const ScriptGenContainer = (props: BoxProps) => {
                     position: 'top-right'
                 });
                 setScript('');
+                (onScriptChange || (() => {}))('');
             }
         } else {
             console.log('error');
@@ -67,6 +73,7 @@ const ScriptGenContainer = (props: BoxProps) => {
                 position: 'top-right'
             });
             setScript('');
+            (onScriptChange || (() => {}))('');
         }
     };
 
