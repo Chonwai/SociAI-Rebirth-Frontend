@@ -10,8 +10,8 @@ export const data: NavData = [
     {
         title: 'Product',
         items: [
-            { icon: FiPenTool, label: 'Shiba Script Generator', href: '/' },
-            { icon: FiSearch, label: 'Hashtag Dog', href: '/hashtag-dog' }
+            { icon: FiSearch, label: 'Hashtag Dog', href: '/hashtag-dog' },
+            { icon: FiPenTool, label: 'Shiba Script Generator', href: '/' }
             // { icon: FiBook, label: 'Changelog', href: '#' },
             // { icon: HiOutlineChatAlt, label: 'Feedback', href: '#' },
             // { icon: FiPackage, label: 'Integrations', href: '#' }

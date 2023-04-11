@@ -1,6 +1,5 @@
 import {
     Box,
-    Button,
     Drawer,
     DrawerBody,
     DrawerContent,
@@ -10,9 +9,9 @@ import {
     useDisclosure
 } from '@chakra-ui/react';
 import { useRef } from 'react';
-import { data } from './data';
 import { NavAccordion } from './NavAccordion';
 import { NavLayout } from './NavLayout';
+import { data } from './data';
 
 export const NavHeader = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -39,7 +38,7 @@ export const NavHeader = () => {
                             onToggleMode={toggleColorMode}
                         />
                     </DrawerHeader>
-                    <DrawerBody>
+                    <DrawerBody py={0}>
                         <NavAccordion data={data} />
                         {/* <HStack mt="6">
                             <Button

@@ -31,16 +31,11 @@ const ScriptGenerator = ({
     const hasCompletedAllSteps = activeStep === steps.length;
     const bg = useColorModeValue('gray.200', 'gray.700');
 
-    const flexRef = useRef<HTMLDivElement>(null);
-
     const scrollToTop = () => {
-        if (flexRef?.current) {
-            const flexPosition = flexRef.current.getBoundingClientRect().top + window.pageYOffset;
-            window.scrollTo({
-                top: flexPosition - 100,
-                behavior: 'smooth'
-            });
-        }
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     };
 
     const rows = useBreakpointValue({ base: 15, md: 10 });
@@ -67,7 +62,7 @@ const ScriptGenerator = ({
     }, [hasCompletedAllSteps]);
 
     return (
-        <Flex flexDir="column" width="100%" p={{ base: 4, md: 8 }} ref={flexRef}>
+        <Flex flexDir="column" width="100%" p={{ base: 4, md: 8 }}>
             <Steps variant={variant} colorScheme="blue" activeStep={activeStep}>
                 <Step label="Script">
                     <ScriptGen onScriptChange={handleScriptChange} />

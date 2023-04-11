@@ -66,6 +66,14 @@ function App({ Component, pageProps }: AppProps) {
         })(window, document, "clarity", "script", "gmdy6hqyj8");`
                 }}
             />
+            <noscript>
+                <iframe
+                    src={`https://www.googletagmanager.com/ns.html?id=${process.env.NEXT_PUBLIC_GTM_TRACKING_ID}`}
+                    height="0"
+                    width="0"
+                    style={{ display: 'none', visibility: 'hidden' }}
+                ></iframe>
+            </noscript>
             <ChakraProvider theme={theme}>
                 <Component {...pageProps} />
                 <Analytics />
