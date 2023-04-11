@@ -13,9 +13,11 @@ import {
     Textarea,
     useClipboard,
     useDisclosure,
-    useBreakpointValue
+    useBreakpointValue,
+    Icon
 } from '@chakra-ui/react';
 import { useEffect, useRef } from 'react';
+import { FiCheckCircle, FiClipboard } from 'react-icons/fi';
 
 const scriptStyles = ['Instagram', 'Twitter', 'Facebook', '小紅書', 'TikTok'];
 const scriptRegions = ['Global', 'Macau', 'Hong Kong', 'Taiwan', 'Mainland China'];
@@ -148,7 +150,16 @@ const ScriptGenView = (props: ScriptGenViewProps) => {
                                 }}
                                 rows={rows}
                             />
-                            <Button onClick={onCopy}>
+                            <Button
+                                onClick={onCopy}
+                                leftIcon={
+                                    hasCopied ? (
+                                        <Icon as={FiCheckCircle} />
+                                    ) : (
+                                        <Icon as={FiClipboard} />
+                                    )
+                                }
+                            >
                                 {hasCopied ? 'Copied!' : 'Copy to Clipboard'}
                             </Button>
                         </Stack>

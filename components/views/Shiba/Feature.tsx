@@ -33,7 +33,7 @@ const features = [
 export const Feature = (props: BoxProps) => {
     const { ...rest } = props;
     return (
-        <Box as="section" bg="bg-surface" {...rest}>
+        <Box as="section" bg="bg-surface" py={{ base: '8', md: '12' }} {...rest}>
             <Stack spacing={{ base: '12', md: '16' }}>
                 <Stack spacing={{ base: '4', md: '5' }} align="center" textAlign="center">
                     <Stack spacing="3">

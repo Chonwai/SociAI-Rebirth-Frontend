@@ -7,12 +7,14 @@ import {
     Button,
     Flex,
     Heading,
+    Icon,
     Textarea,
     useBreakpointValue,
     useClipboard
 } from '@chakra-ui/react';
 import { Step, Steps, useSteps } from 'chakra-ui-steps';
 import { useEffect, useRef, useState } from 'react';
+import { FiCheckCircle, FiClipboard } from 'react-icons/fi';
 
 const steps = [{ label: 'Script' }, { label: 'Hashtag' }];
 
@@ -83,7 +85,14 @@ const ScriptGenerator = ({
                         rows={rows}
                         onChange={(e) => setValue(e.target.value)}
                     />
-                    <Button w={'full'} mt={4} onClick={onCopy}>
+                    <Button
+                        w={'full'}
+                        mt={4}
+                        onClick={onCopy}
+                        leftIcon={
+                            hasCopied ? <Icon as={FiCheckCircle} /> : <Icon as={FiClipboard} />
+                        }
+                    >
                         {hasCopied ? 'Copied!' : 'Copy to Clipboard'}
                     </Button>
                 </>

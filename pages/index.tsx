@@ -41,14 +41,6 @@ const Home = () => {
                 />
                 <meta property="og:site_name" content="SociAI" />
             </Head>
-            <noscript>
-                <iframe
-                    src={`https://www.googletagmanager.com/ns.html?id=${process.env.NEXT_PUBLIC_GTM_TRACKING_ID}`}
-                    height="0"
-                    width="0"
-                    style={{ display: 'none', visibility: 'hidden' }}
-                ></iframe>
-            </noscript>
             <ScriptGenerator variant={variant} />
             <Feature py={{ base: '8', md: '12' }} px={{ base: '4', md: '8' }} />
         </>

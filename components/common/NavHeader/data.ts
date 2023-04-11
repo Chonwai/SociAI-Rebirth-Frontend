@@ -1,5 +1,5 @@
 import { ElementType } from 'react';
-import { FiPenTool, FiSearch } from 'react-icons/fi';
+import { FiFileText, FiPenTool, FiSearch } from 'react-icons/fi';
 
 export type NavData = Array<{
     title: string;
@@ -11,7 +11,8 @@ export const data: NavData = [
         title: 'Product',
         items: [
             { icon: FiSearch, label: 'Hashtag Dog', href: '/hashtag-dog' },
-            { icon: FiPenTool, label: 'Shiba Script Generator', href: '/' }
+            { icon: FiPenTool, label: 'Script Writer', href: '/shiba' },
+            { icon: FiFileText, label: 'Shiba Script Generator', href: '/' }
             // { icon: FiBook, label: 'Changelog', href: '#' },
             // { icon: HiOutlineChatAlt, label: 'Feedback', href: '#' },
             // { icon: FiPackage, label: 'Integrations', href: '#' }

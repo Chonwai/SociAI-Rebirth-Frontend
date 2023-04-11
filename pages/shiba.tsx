@@ -1,13 +1,13 @@
 import Head from 'next/head';
-import HashtagDogController from '@/components/containers/HashtagDog/HashtagDogContainer';
 import { withLayout } from '@/hocs/withLayout';
 import SimpleLayout from '@/layouts/SimpleLayout';
+import ShibaContainer from '@/components/containers/Shiba/ShibaContainer';
 
-const HashtagDog = () => {
+const Shiba = () => {
     return (
         <>
             <Head>
-                <title>SociAI - Hashtag Dog</title>
+                <title>SociAI - Shiba</title>
                 <meta
                     name="description"
                     content="🚀 Are you tired of spending hours searching for the perfect hashtags for your social media posts? Look no further than SociAI Hashtag Generator! Our fast and easy to use hashtag generator analyzes your content and suggests the most effective hashtags for multiple social media platforms. Save time ⏰ and boost engagement 💬 with SociAI. Try it out today!"
@@ -32,9 +32,9 @@ const HashtagDog = () => {
                 />
                 <meta property="og:site_name" content="SociAI" />
             </Head>
-            <HashtagDogController />
+            <ShibaContainer />
         </>
     );
 };
 
-export default withLayout(HashtagDog, SimpleLayout);
+export default withLayout(Shiba, SimpleLayout);
