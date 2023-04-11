@@ -7,8 +7,6 @@ import ScriptGenerator from '@/components/features/ScriptGenerator/ScriptGenerat
 import { Feature } from '@/components/views/Shiba/Feature';
 import { useBreakpointValue } from '@chakra-ui/react';
 
-const isDev = process.env.NEXT_PUBLIC_NODE_ENV !== 'production';
-
 const Home = () => {
     const variant = useBreakpointValue({ base: 'simple', md: 'circles-alt' }) as
         | 'circles'
@@ -19,46 +17,6 @@ const Home = () => {
         <>
             <Head>
                 <title>SociAI</title>
-                {
-                    // eslint-disable-next-line @next/next/no-sync-scripts
-                    !isDev && (
-                        <script
-                            async
-                            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_TRACKING_ID}`}
-                        ></script>
-                    )
-                }
-                {!isDev && (
-                    // eslint-disable-next-line @next/next/next-script-for-ga
-                    <script
-                        dangerouslySetInnerHTML={{
-                            __html: `
-                                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                                })(window,document,'script','dataLayer','${process.env.NEXT_PUBLIC_GTM_TRACKING_ID}');
-                        `
-                        }}
-                    />
-                )}
-                {
-                    // eslint-disable-next-line @next/next/no-sync-scripts
-                    !isDev && (
-                        <script
-                            dangerouslySetInnerHTML={{
-                                __html: `
-                            window.dataLayer = window.dataLayer || [];
-                            function gtag(){dataLayer.push(arguments);}
-                            gtag('js', new Date());
-                            gtag('config', '${process.env.NEXT_PUBLIC_GA_TRACKING_ID}', {
-                              page_path: window.location.pathname,
-                            });
-                        `
-                            }}
-                        />
-                    )
-                }
                 <meta
                     name="description"
                     content="🚀 Are you tired of spending hours searching for the perfect hashtags for your social media posts? Look no further than SociAI Hashtag Generator! Our fast and easy to use hashtag generator analyzes your content and suggests the most effective hashtags for multiple social media platforms. Save time ⏰ and boost engagement 💬 with SociAI. Try it out today!"
