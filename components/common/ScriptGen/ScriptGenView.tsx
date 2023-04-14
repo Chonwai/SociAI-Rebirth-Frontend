@@ -1,3 +1,4 @@
+import { getRegions, getSocialMedias } from '@/utils/utils';
 import {
     Box,
     BoxProps,
@@ -19,8 +20,8 @@ import {
 import { useEffect, useRef } from 'react';
 import { FiCheckCircle, FiClipboard } from 'react-icons/fi';
 
-const scriptStyles = ['Instagram', 'Twitter', 'Facebook', '小紅書', 'TikTok'];
-const scriptRegions = ['Global', 'Macau', 'Hong Kong', 'Taiwan', 'Mainland China'];
+const scriptStyles = getSocialMedias();
+const scriptRegions = getRegions();
 const scriptLengths = ['Short', 'Medium', 'Long'];
 
 interface ScriptGenViewProps extends BoxProps {

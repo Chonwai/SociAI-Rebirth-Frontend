@@ -33,3 +33,25 @@ export const hashtags2String = (hashtags: string[]) => {
         return '';
     }
 };
+
+export const getSocialMedias = () => {
+    const socialMedia = ['Instagram', 'Twitter', 'Facebook', 'LinkedIn', '小紅書', 'TikTok'];
+    return socialMedia;
+};
+
+export const getRegions = () => {
+    const regions = [
+        'Global 🌎',
+        'Australia 🇦🇺',
+        'Canada 🇨🇦',
+        'China 🇨🇳',
+        'Hong Kong 🇭🇰',
+        'India 🇮🇳',
+        'Macau 🇲🇴',
+        'Signapore 🇸🇬',
+        'Taiwan 🇹🇼',
+        'United Kingdom 🇬🇧',
+        'United States 🇺🇸'
+    ];
+    return regions;
+};

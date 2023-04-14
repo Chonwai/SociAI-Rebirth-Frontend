@@ -15,7 +15,7 @@ const DEFAULT_VALUE = {
     style: 'Instagram',
     length: 'Medium',
     description: '',
-    region: 'Global'
+    region: 'Global 🌎'
 };
 
 const ScriptGenContainer = (props: ScriptGenContainerProps) => {

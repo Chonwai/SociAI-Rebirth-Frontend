@@ -15,7 +15,7 @@ const DEFAULT_VALUE = {
     style: 'Instagram',
     amount: 10,
     script: '',
-    region: 'Global'
+    region: 'Global 🌎'
 };
 
 const HashtagGenContainer = (props: HashtagGenContainerProps) => {

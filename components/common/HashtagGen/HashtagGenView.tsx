@@ -1,4 +1,4 @@
-import { hashtags2String } from '@/utils/utils';
+import { getRegions, getSocialMedias, hashtags2String } from '@/utils/utils';
 import {
     Box,
     BoxProps,
@@ -21,8 +21,8 @@ import {
 import { useEffect, useRef } from 'react';
 import { FiCheckCircle, FiClipboard } from 'react-icons/fi';
 
-const hashtagStyles = ['Instagram', 'Twitter', 'Facebook', '小紅書', 'TikTok'];
-const hashtagRegions = ['Global', 'Macau', 'Hong Kong', 'Taiwan', 'Mainland China'];
+const hashtagStyles = getSocialMedias();
+const hashtagRegions = getRegions();
 
 interface HashtagGenViewProps extends BoxProps {
     handleSubmit: (
