@@ -33,7 +33,7 @@ const Home = () => {
                 <meta property="og:url" content="https://www.sociai.app" />
                 <meta
                     property="og:image"
-                    content="https://scontent-tpe1-1.xx.fbcdn.net/v/t39.30808-6/338550188_762914091829144_2784882164821364953_n.png?stp=cp6_dst-png&_nc_cat=104&ccb=1-7&_nc_sid=730e14&_nc_ohc=kfZ3p9PiLCcAX-s9xtY&_nc_ht=scontent-tpe1-1.xx&oh=00_AfAMtZ0Oe1GPSCKV-9XgSaDonrMZryj3ZsLlW87BQcKGVw&oe=642BBFC5"
+                    content="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F0855b34a-f749-498a-a33b-fc59e06b0350%2F336512779_929932591758511_737083373618479070_n.png?id=e903d791-4e2a-4248-8287-695684d944b9&table=block&spaceId=54feed23-6771-4a46-bf43-72dc7d22e0cf&width=2000&userId=c6fb95f0-4b77-47dd-864e-a32f6912a243&cache=v2"
                 />
                 <meta
                     property="og:description"
