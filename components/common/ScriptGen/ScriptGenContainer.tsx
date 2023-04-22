@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ScriptGenView from './ScriptGenView';
 import { useToast, BoxProps } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
@@ -15,7 +15,10 @@ const DEFAULT_VALUE = {
     style: 'Instagram',
     length: 'Medium',
     description: '',
-    region: 'Global 🌎'
+    region: 'Global 🌎',
+    hashtagCount: 15,
+    tone: 'Casual 🤣',
+    language: 'English'
 };
 
 const ScriptGenContainer = (props: ScriptGenContainerProps) => {
@@ -40,7 +43,7 @@ const ScriptGenContainer = (props: ScriptGenContainerProps) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                prompt: `You are now a ${data.style} script writer. The output should follow the format '''json\n {"script": ""} '''. Please extend and generate a ${data.length} and including emoji ${data.region} style script based on the given reference description: "${data.description}".`
+                prompt: `You are now an ${data.language} ${data.style} social media script writer and your tone style is ${data.tone}. The output must follow the format '''json\n {"content": ""} '''. Please extend and generate a ${data.length} size script and include emoji with ${data.region} style script with ${data.language} and give ${data.hashtagCount} related topic popular hashtags based on the given reference description: "${data.description}".`
             })
         });
 
@@ -48,8 +51,8 @@ const ScriptGenContainer = (props: ScriptGenContainerProps) => {
             const data: any = await response.json();
             const result = getContent(data.result);
             if (result) {
-                setScript(_get(result, 'script', ''));
-                (onScriptChange || (() => {}))(_get(result, 'script', ''));
+                setScript(_get(result, 'content', ''));
+                (onScriptChange || (() => {}))(_get(result, 'content', ''));
             } else {
                 toasts({
                     title: 'Error',

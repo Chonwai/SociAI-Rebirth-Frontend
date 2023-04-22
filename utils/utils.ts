@@ -55,3 +55,25 @@ export const getRegions = () => {
     ];
     return regions;
 };
+
+export const getTones = () => {
+    const tone = [
+        'Casual 🤣',
+        'Professional 🧔',
+        'Formal 🤔',
+        'Humorous 🤪',
+        'Emotional 🥹',
+        'Storytelling 📖'
+    ];
+    return tone;
+};
+
+export const getScriptLengths = () => {
+    const scriptLength = ['Short', 'Medium', 'Long'];
+    return scriptLength;
+};
+
+export const getLanguages = () => {
+    const languages = ['English', '繁體中文', '简体中文'];
+    return languages;
+};

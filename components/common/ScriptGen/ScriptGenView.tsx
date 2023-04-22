@@ -1,4 +1,10 @@
-import { getRegions, getSocialMedias } from '@/utils/utils';
+import {
+    getLanguages,
+    getRegions,
+    getScriptLengths,
+    getSocialMedias,
+    getTones
+} from '@/utils/utils';
 import {
     Box,
     BoxProps,
@@ -15,14 +21,17 @@ import {
     useClipboard,
     useDisclosure,
     useBreakpointValue,
-    Icon
+    Icon,
+    Input
 } from '@chakra-ui/react';
 import { useEffect, useRef } from 'react';
 import { FiCheckCircle, FiClipboard } from 'react-icons/fi';
 
 const scriptStyles = getSocialMedias();
 const scriptRegions = getRegions();
-const scriptLengths = ['Short', 'Medium', 'Long'];
+const scriptLengths = getScriptLengths();
+const scriptTones = getTones();
+const scriptLanguages = getLanguages();
 
 interface ScriptGenViewProps extends BoxProps {
     handleSubmit: (
@@ -112,6 +121,48 @@ const ScriptGenView = (props: ScriptGenViewProps) => {
                                 </Select>
                                 <FormErrorMessage>
                                     {errors.region && errors.region.message}
+                                </FormErrorMessage>
+                            </FormControl>
+                        </Stack>
+                        <Stack spacing="4" direction={{ base: 'column', md: 'row' }} mb={4}>
+                            <FormControl isInvalid={errors.tone}>
+                                <FormLabel>Script Tone</FormLabel>
+                                <Select {...register('tone')}>
+                                    {scriptTones.map((tone) => (
+                                        <option key={tone} value={tone}>
+                                            {tone}
+                                        </option>
+                                    ))}
+                                </Select>
+                                <FormErrorMessage>
+                                    {errors.tone && errors.tone.message}
+                                </FormErrorMessage>
+                            </FormControl>
+                            <FormControl isInvalid={errors.language}>
+                                <FormLabel>Script Language</FormLabel>
+                                <Select {...register('language')}>
+                                    {scriptLanguages.map((language) => (
+                                        <option key={language} value={language}>
+                                            {language}
+                                        </option>
+                                    ))}
+                                </Select>
+                                <FormErrorMessage>
+                                    {errors.language && errors.language.message}
+                                </FormErrorMessage>
+                            </FormControl>
+                            <FormControl isInvalid={errors.hashtagCount}>
+                                <FormLabel htmlFor="hashtagCount">Hashtags Amount (1-20)</FormLabel>
+                                <Input
+                                    type={'number'}
+                                    id="hashtagCount"
+                                    placeholder="number"
+                                    min={1}
+                                    max={20}
+                                    {...register('hashtagCount')}
+                                />
+                                <FormErrorMessage>
+                                    {errors.hashtagCount && errors.hashtagCount.message}
                                 </FormErrorMessage>
                             </FormControl>
                         </Stack>
