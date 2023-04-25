@@ -43,7 +43,7 @@ const ScriptGenContainer = (props: ScriptGenContainerProps) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                prompt: `You are now an ${data.language} ${data.style} social media script writer and your tone style is ${data.tone}. The output must follow the format '''json\n {"content": ""} '''. Please extend and generate a ${data.length} size script and include emoji with ${data.region} style script with ${data.language} and give ${data.hashtagCount} related topic popular hashtags based on the given reference description: "${data.description}".`
+                prompt: `You are now an ${data.language} ${data.style} social media script writer and your tone style is ${data.tone}! The output must follow the json format (the newline symbol "\n" must be replace to "\\n"!) {"content": ""}! Please extend and generate a ${data.length} size script and include emoji with ${data.region} style script with ${data.language} and give ${data.hashtagCount} related topic popular hashtags based on the given reference description: ${data.description}.`
             })
         });
 

@@ -1,17 +1,21 @@
 export const getContentOnNote = (str: string) => {
-    const jsonRegex = /{.*}/s;
-    const jsonMatch = str.match(jsonRegex);
+    try {
+        // Use a regex to extract JSON from the input string.
+        const jsonRegex = /{(?:[^{}]|{(?:[^{}]|{[^{}]*})*})*}/s;
+        const jsonMatch = str.match(jsonRegex);
 
-    if (jsonMatch) {
-        const jsonStr = jsonMatch[0];
-        const jsonObj = JSON.parse(jsonStr);
-        return jsonObj;
-    } else {
-        console.log('No JSON found in the paragraph');
+        if (jsonMatch) {
+            const jsonStr = jsonMatch[0];
+            const jsonObj = JSON.parse(jsonStr);
+            return jsonObj;
+        } else {
+            console.log('No JSON found in the paragraph');
+            return {};
+        }
+    } catch (error) {
+        console.error('Error parsing JSON:', error);
         return {};
     }
-
-    return {};
 };
 
 export const getContent = (str: string) => {
