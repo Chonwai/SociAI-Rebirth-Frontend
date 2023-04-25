@@ -37,47 +37,55 @@ const ScriptGenContainer = (props: ScriptGenContainerProps) => {
     });
 
     const handleGenerateClick = async (data: any) => {
-        const response = await fetch('/api/chat', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                prompt: `You are now an ${data.language} ${data.style} social media script writer and your tone style is ${data.tone}! The output must follow the json format (the newline symbol "\n" must be replace to "\\n"!) {"content": ""}! Please extend and generate a ${data.length} size script and include emoji with ${data.region} style script with ${data.language} and give ${data.hashtagCount} related topic popular hashtags based on the given reference description: ${data.description}.`
-            })
-        });
+        const maxRetries = 1;
+        const retryDelay = 1000; // 1 second
 
-        if (response.ok) {
-            const data: any = await response.json();
-            const result = getContent(data.result);
-            if (result) {
-                setScript(_get(result, 'content', ''));
-                (onScriptChange || (() => {}))(_get(result, 'content', ''));
-            } else {
-                toasts({
-                    title: 'Error',
-                    description: 'The Network is not working, please try again :(',
-                    status: 'error',
-                    duration: 5000,
-                    isClosable: true,
-                    position: 'top-right'
+        const fetchData = async (retryCount: number): Promise<any> => {
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        prompt: `You are now an ${data.language} ${data.style} social media script writer and your tone style is ${data.tone}! The output must follow the json format (the newline symbol "\n" must be replace to "\\n"!) {"content": ""}! Please extend and generate a ${data.length} size script and include emoji with ${data.region} style script with ${data.language} and give ${data.hashtagCount} related topic popular hashtags based on the given reference description: ${data.description}.`
+                    })
                 });
-                setScript('');
-                (onScriptChange || (() => {}))('');
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const responseData: any = await response.json();
+                const result = getContent(responseData.result);
+                if (result) {
+                    setScript(_get(result, 'content', ''));
+                    (onScriptChange || (() => {}))(_get(result, 'content', ''));
+                } else {
+                    throw new Error('Result content is empty or invalid');
+                }
+            } catch (error) {
+                console.error('Fetch error:', error);
+                if (retryCount < maxRetries) {
+                    console.log(`Retrying... (${retryCount + 1}/${maxRetries})`);
+                    await new Promise((resolve) => setTimeout(resolve, retryDelay));
+                    await fetchData(retryCount + 1);
+                } else {
+                    toasts({
+                        title: 'Error',
+                        description: 'The Network is not working, please try again :(',
+                        status: 'error',
+                        duration: 5000,
+                        isClosable: true,
+                        position: 'top-right'
+                    });
+                    setScript('');
+                    (onScriptChange || (() => {}))('');
+                }
             }
-        } else {
-            console.log('error');
-            toasts({
-                title: 'Error',
-                description: 'The Network is not working, please try again :(',
-                status: 'error',
-                duration: 5000,
-                isClosable: true,
-                position: 'top-right'
-            });
-            setScript('');
-            (onScriptChange || (() => {}))('');
-        }
+        };
+
+        await fetchData(0);
     };
 
     return (
