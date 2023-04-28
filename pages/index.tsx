@@ -41,8 +41,7 @@ const Home = () => {
                 />
                 <meta property="og:site_name" content="SociAI" />
             </Head>
-            <ScriptGenerator variant={variant} />
-            <Feature py={{ base: '8', md: '12' }} px={{ base: '4', md: '8' }} />
+            <ShibaContainer />
         </>
     );
 };

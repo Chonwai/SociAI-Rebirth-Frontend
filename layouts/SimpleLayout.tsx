@@ -24,7 +24,7 @@ const SimpleLayout = (props: DashboardLayoutProps) => {
                 <Button
                     position={'fixed'}
                     bottom={-1}
-                    right={'20px'}
+                    left={'7%'}
                     w={'140px'}
                     as="a"
                     href="https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAN__ppuG5ZUQ0VXRlo4WVpNS1hLTDJGMEtJMTMzMVFHUS4u"

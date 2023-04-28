@@ -58,7 +58,7 @@ const HashtagGenView = (props: HashtagGenViewProps) => {
         if (value !== '' && textareaRef.current) {
             const textareaPosition =
                 textareaRef.current.getBoundingClientRect().top + window.pageYOffset;
-            window.scrollTo({ top: textareaPosition - 100, behavior: 'smooth' });
+            window.scrollTo({ top: textareaPosition - 50, behavior: 'smooth' });
         }
     }, [value]);
 

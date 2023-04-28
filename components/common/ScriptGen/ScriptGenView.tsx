@@ -22,10 +22,14 @@ import {
     useDisclosure,
     useBreakpointValue,
     Icon,
-    Input
+    Input,
+    keyframes
 } from '@chakra-ui/react';
 import { useEffect, useRef } from 'react';
 import { FiCheckCircle, FiClipboard } from 'react-icons/fi';
+import { FaDog } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+import { Bounce } from '@/utils/animation';
 
 const scriptStyles = getSocialMedias();
 const scriptRegions = getRegions();
@@ -54,6 +58,8 @@ const ScriptGenView = (props: ScriptGenViewProps) => {
 
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
+    const animation = `${Bounce} 1s ease-in-out infinite`;
+
     useEffect(() => {
         if (script.length > 0) {
             setValue(script);
@@ -66,7 +72,7 @@ const ScriptGenView = (props: ScriptGenViewProps) => {
         if (value !== '' && textareaRef.current) {
             const textareaPosition =
                 textareaRef.current.getBoundingClientRect().top + window.pageYOffset;
-            window.scrollTo({ top: textareaPosition - 100, behavior: 'smooth' });
+            window.scrollTo({ top: textareaPosition - 50, behavior: 'smooth' });
         }
     }, [value]);
 
@@ -214,6 +220,27 @@ const ScriptGenView = (props: ScriptGenViewProps) => {
                             >
                                 {hasCopied ? 'Copied!' : 'Copy to Clipboard'}
                             </Button>
+                        </Stack>
+                        <Stack spacing={4} mt={4} justifyContent={'center'} alignItems={'center'}>
+                            <Text fontWeight={'bold'} fontSize={'xl'}>
+                                Do you want to get more hashtags?
+                            </Text>
+                            <Box as={motion.div} animation={animation} mt={4}>
+                                <Icon as={FaDog} mr={1} color={'red'} />
+                                <Icon as={FaDog} mr={1} color={'orange'} />
+                                <Icon as={FaDog} mr={1} color={'yellow'} />
+                                <Button
+                                    as="a"
+                                    px={2}
+                                    href={`/hashtag-dog?pre_script=${value}`}
+                                    variant="link"
+                                >
+                                    Click Here!
+                                </Button>
+                                <Icon as={FaDog} mr={1} color={'green'} />
+                                <Icon as={FaDog} mr={1} color={'blue'} />
+                                <Icon as={FaDog} mr={1} color={'purple'} />
+                            </Box>
                         </Stack>
                     </Collapse>
                 )}
