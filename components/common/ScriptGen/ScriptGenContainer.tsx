@@ -11,7 +11,26 @@ interface ScriptGenContainerProps extends BoxProps {
     onScriptChange?: (script: string) => void | undefined;
 }
 
-const DEFAULT_VALUE = {
+
+const saveFormDataToLocalStorage = (key: string, data: any) => {
+    try {
+        localStorage.setItem(key, JSON.stringify(data));
+    } catch (error) {
+        console.error('Error saving form data to localStorage:', error);
+    }
+};
+
+const loadFormDataFromLocalStorage = (key: string) => {
+    try {
+        const data = localStorage.getItem(key);
+        return data ? JSON.parse(data) : null;
+    } catch (error) {
+        console.error('Error loading form data from localStorage:', error);
+        return null;
+    }
+};
+
+const DEFAULT_VALUE = loadFormDataFromLocalStorage('shibaFormData') || {
     style: 'Instagram',
     length: 'Medium',
     description: '',
@@ -25,6 +44,7 @@ const ScriptGenContainer = (props: ScriptGenContainerProps) => {
     const { onScriptChange, ...rest } = props;
     const [script, setScript] = useState('');
 
+    // Get the toasts object
     const toasts = useToast();
 
     const {
@@ -37,6 +57,7 @@ const ScriptGenContainer = (props: ScriptGenContainerProps) => {
     });
 
     const handleGenerateClick = async (data: any) => {
+        saveFormDataToLocalStorage('shibaFormData', data);
         const maxRetries = 1;
         const retryDelay = 1000; // 1 second
 
